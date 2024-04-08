@@ -18,10 +18,16 @@ def doEat(prev, now):
         # 먹기
         for name, info in people.items() : 
             x = info[0]
-            sx = info[0] - (t%l)
-            if sx in sushi[name].keys() : 
-                sushi[name][sx]-=1
-                people[name]=[x, info[1]-1]
+            for sx in sushi[name].keys():
+                if (sx+t)%l == x : 
+                    # print("name peo1", people[name], sushi[name])
+                    eat = min(info[1], sushi[name][sx]) #먹어야 하는 개수, 남은 개수 중 더 작은것으로 둘다 적용
+                    people[name]=[x, info[1]-eat]
+                    sushi[name][sx]-=eat
+                    # print("name peo2", people[name], sushi[name])
+            # sx = (l+info[0] - (t%l))%l
+            # if sx in sushi[name].keys() : 
+                
 
 prev=0
 l, q = map(int, input().split())
