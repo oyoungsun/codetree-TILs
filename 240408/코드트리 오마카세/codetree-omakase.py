@@ -1,20 +1,21 @@
 def doEat(prev, now):
     global l, sushi, people, time
-    for t in range(max(prev+1, now-5), now+1):
+    # print(prev, now, now-5, max(prev+1, now-5))
+    for t in range(prev+1, now-5, now+1):
         if t in time : 
-            for comman in time[t] : 
-                name, x= comman[2], comman[1]
-                if(comman[0]==1) : 
-                        if(name not in sushi):
-                            sushi[name] = dict()
-                            sushi[name][(l+x-(t%5)) % 5] = 1
-                        elif ((l+x-(t%5)) % 5) not in sushi[name].keys(): 
-                            sushi[name][(l+x-(t%5)) % 5]= 1
-                        else : 
-                            sushi[name][(l+x-(t%5)) % 5]+= 1
-                else : 
-                    n = comman[3]
-                    people[name] = [x, n]
+            comman = time[t]
+            name, x= comman[2], comman[1]
+            if(comman[0]==1) : 
+                    if(name not in sushi):
+                        sushi[name] = dict()
+                        sushi[name][(l+x-(t%5)) % 5] = 1
+                    elif ((l+x-(t%5)) % 5) not in sushi[name].keys(): 
+                        sushi[name][(l+x-(t%5)) % 5]= 1
+                    else : 
+                        sushi[name][(l+x-(t%5)) % 5]+= 1
+            else : 
+                n = comman[3]
+                people[name] = [x, n]
         # 먹기
         for name, info in people.items() : 
             x = info[0]
