@@ -1,6 +1,6 @@
 def doEat(prev, now):
     global l, sushi, people, time
-    for t in range(prev+1, now+1):
+    for t in range(max(prev+1, now-5), now+1):
         if t in time : 
             for comman in time[t] : 
                 name, x= comman[2], comman[1]
