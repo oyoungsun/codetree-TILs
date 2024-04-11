@@ -40,15 +40,15 @@ parent = []
 child = [[] for _ in range(0, n+1)]
 alam = [1 for _ in range(n)] 
 #100 명령은 항상 첫 번째 명령으로만 주어지며, 항상 주어집니다. 0번 채팅방의 p값과 a값은 주어지지 않음에 유의합니다.
-setting = input().split()
-parent = list(map(int, setting[1:9]))
-auth = list(map(int, setting[9:]))
-for i in range(0, n) : 
-    p = parent[i]
-    child[p].append(i+1)
 for i in range(q):
-    command = list(input().split())
-    if command[0] == "200":
+    command = list(map(str, input().split()))
+    if command[0]== "100":
+        parent = list(map(int, command[1:9]))
+        auth = list(map(int, command[9:]))
+        for i in range(0, n) : 
+            p = parent[i]
+            child[p].append(i+1)
+    elif command[0] == "200":
         onoff(alam, int(command[1]))
     elif command[0] == "300" : 
         power(auth, int(command[1]), int(command[2]))
