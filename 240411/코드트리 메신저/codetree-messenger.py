@@ -1,5 +1,4 @@
 def bfs_chat(c, child, auth, alam):
-    if alam[c-1]==0 : return 0
     q = []
     q.insert(0, (c, 0))
     cnt=0
@@ -48,10 +47,11 @@ for i in range(n) :
 for _ in range(q-1):
     command = list(map(int, input().split()))
     if command[0] == 200:
-        onoff(alam, int(command[1]))
+        onoff(alam, command[1])
     elif command[0] == 300 : 
-        power(auth, int(command[1]), int(command[2]))
+        power(auth, command[1], int(command[2]))
     elif command[0] == 400 :
-        parent, child = swap(int(command[1]), int(command[2]), parent, child)
+        parent, child = swap(command[1], command[2], parent, child)
     elif command[0] == 500 : 
-        print(bfs_chat(int(command[1]), child, auth, alam))
+        print(command, alam)
+        print(bfs_chat(command[1], child, auth, alam))
