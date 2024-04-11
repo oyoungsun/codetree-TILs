@@ -31,26 +31,27 @@ def swap(c1, c2, origin_p, origin_c):
     c[origin_p[c2]].remove(c2+1)
     c[origin_p[c2]].append(c1+1)
     return p, c
-    
+
+
 n, q = map(int, input().split())
 auth = []
 parent = []
 child = [[] for _ in range(0, n+1)]
-alam = [1 for _ in range(n)] 
+alam = [1 for _ in range(n)]    
 #100 명령은 항상 첫 번째 명령으로만 주어지며, 항상 주어집니다. 0번 채팅방의 p값과 a값은 주어지지 않음에 유의합니다.
-for i in range(q):
-    command = list(map(str, input().split()))
-    if command[0]== "100":
-        parent = list(map(int, command[1:n+1]))
-        auth = list(map(int, command[n+1:]))
-        for i in range(n) : 
-            p = parent[i]
-            child[p].append(i+1)
-    elif command[0] == "200":
+command = list(map(int, input().split()))
+parent = command[1:n+1]
+auth = command[n+1:]
+for i in range(n) : 
+    p = parent[i]
+    child[p].append(i+1)
+for _ in range(q-1):
+    command = input().split()
+    if command[0] == 200:
         onoff(alam, int(command[1]))
-    elif command[0] == "300" : 
+    elif command[0] == 300 : 
         power(auth, int(command[1]), int(command[2]))
-    elif command[0] == "400" :
+    elif command[0] == 400 :
         parent, child = swap(int(command[1]), int(command[2]), parent, child)
-    elif command[0] == "500" : 
+    elif command[0] == 500 : 
         print(bfs_chat(int(command[1]), child, auth, alam))
