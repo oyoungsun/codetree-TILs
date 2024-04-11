@@ -46,7 +46,7 @@ for i in range(n) :
     p = parent[i]
     child[p].append(i+1)
 for _ in range(q-1):
-    command = input().split()
+    command = list(map(int, input().split()))
     if command[0] == 200:
         onoff(alam, int(command[1]))
     elif command[0] == 300 : 
