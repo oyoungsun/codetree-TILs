@@ -53,5 +53,5 @@ for _ in range(q-1):
     elif command[0] == 400 :
         parent, child = swap(command[1], command[2], parent, child)
     elif command[0] == 500 : 
-        print(command, alam)
+        # print(command, alam)
         print(bfs_chat(command[1], child, auth, alam))
