@@ -9,10 +9,8 @@ def bfs_chat(c, child, auth, alam):
             # print("ch", ch, "alam", alam[ch-1]!=0, "auth : ", now[1] <= auth[ch-1]-1)
             if alam[ch-1]==0 : # 알람이 꺼져있으면 세지 않는다.
                 continue
-            if now[1] > auth[ch-1]-1 : # depth차이 > 권한 power 이면 닿지 않는다.
-                continue
-            cnt+=1
-   
+            if now[1] <= auth[ch-1]-1 : # depth차이 > 권한 power 이면 닿지 않는다.
+                cnt+=1
             q.insert(0, (ch, now[1]+1))
     return cnt
 def power(auth, c, to):
@@ -43,9 +41,9 @@ alam = [1 for _ in range(n)]
 for i in range(q):
     command = list(map(str, input().split()))
     if command[0]== "100":
-        parent = list(map(int, command[1:9]))
-        auth = list(map(int, command[9:]))
-        for i in range(0, n) : 
+        parent = list(map(int, command[1:n+1]))
+        auth = list(map(int, command[n+1:]))
+        for i in range(n) : 
             p = parent[i]
             child[p].append(i+1)
     elif command[0] == "200":
