@@ -13,7 +13,7 @@ def bfs_chat(c, child, auth, alam):
             q.insert(0, (ch, now[1]+1))
     return cnt
 def power(auth, c, to):
-    auth[c-1] = to
+    auth[c-1] = min(to, 20)
 def onoff(alam, c):
     alam[c-1] ^=1 
 def swap(c1, c2, origin_p, origin_c):
